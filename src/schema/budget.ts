@@ -1,5 +1,5 @@
 import { pgTable, uuid, varchar, numeric, date, timestamp } from "drizzle-orm/pg-core";
-import { analyticalAccounts } from "@/schema";
+import { analyticalAccounts } from "./accounting";
 
 export const budgets = pgTable("budgets", {
   id: uuid("id").defaultRandom().primaryKey(),
