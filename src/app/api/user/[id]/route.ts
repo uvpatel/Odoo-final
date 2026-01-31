@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { db } from "@/db/db";
-import { usersTable } from "@/schema";
+import { users } from "@/schema";
 import { eq } from "drizzle-orm";
 
 export async function GET(
@@ -9,16 +9,10 @@ export async function GET(
 ) {
   const { id } = await params;
 
-  const userId = Number(id);
-
-  if (Number.isNaN(userId)) {
-    return NextResponse.json({ error: "Invalid user id" }, { status: 400 });
-  }
-
   const user = await db
     .select()
-    .from(usersTable)
-    .where(eq(usersTable.id, userId));
+    .from(users)
+    .where(eq(users.id, id));
 
   return NextResponse.json(user[0] ?? null);
 }

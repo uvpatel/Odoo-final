@@ -18,7 +18,7 @@ export const paymentStatus = ["PENDING", "SUCCESS", "FAILED"] as const;
 
 /* ---------------- USERS ---------------- */
 
-export const users = pgTable("users", {
+export const users = pgTable("usersTable", {
   id: uuid("id").defaultRandom().primaryKey(),
   clerkId: varchar("clerk_id", { length: 255 }).unique(), // Made optional
   name: varchar("name", { length: 255 }),
