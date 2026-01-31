@@ -4,28 +4,33 @@ import { db } from "@/db/db";
 import { users } from "@/schema";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
-    // Check admin authentication
-    await requireAdmin(req.headers);
+    // No need to pass headers with Clerk
+    await requireAdmin();
     
-    // Query database
     const allUsers = await db.select().from(users);
-    
     return NextResponse.json(allUsers);
+    
   } catch (error: any) {
     console.error("Error in GET /api/user:", error);
     
-    // Return specific error messages
-    if (error.message?.includes("Unauthorized") || error.message?.includes("admin")) {
+    if (error.message.includes("Unauthorized")) {
       return NextResponse.json(
-        { error: "Unauthorized: Admin access required" },
+        { error: "Not authenticated" },
+        { status: 401 }
+      );
+    }
+    
+    if (error.message.includes("Forbidden")) {
+      return NextResponse.json(
+        { error: "Admin access required" },
         { status: 403 }
       );
     }
     
     return NextResponse.json(
-      { error: error.message || "Internal server error" },
+      { error: "Internal server error" },
       { status: 500 }
     );
   }

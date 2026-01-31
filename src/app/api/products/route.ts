@@ -5,10 +5,10 @@ import { products, vendors } from "@/schema";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
-    await requireAdmin(req.headers);
+    await requireAdmin();
     const data = await db
-        .select({
-            ...getTableColumns(products),
+    .select({
+        ...getTableColumns(products),
             vendorName: vendors.companyName,
         })
         .from(products)
@@ -17,7 +17,7 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-    await requireAdmin(req.headers);
+    await requireAdmin();
     const body = await req.json();
     const [p] = await db.insert(products).values(body).returning();
     return NextResponse.json(p);
