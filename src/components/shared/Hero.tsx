@@ -19,7 +19,7 @@ export default function Hero() {
                         cursorCharacter="|"
                     /> */}
                     <BlurText
-                        text="The all-in-one HRMS platform."
+                        text="Shiv Furniture "
                         direction="bottom"
                         className="text-3xl flex justify-center font-extrabold md:text-2xl lg:text-5xl"
                     />

@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { IconInnerShadowTop } from "@tabler/icons-react"
+// import { Shadow } from "lucide-react";
+
 
 import { NavDocuments } from "@/components/nav-documents"
 import { NavMain } from "@/components/nav-main"
@@ -19,6 +20,10 @@ import {
 
 import { getSidebarData } from "@/config/sidebar-data"
 import { useAuthStore } from "@/store/useAuthStore"
+// import {  IconInnerShadowTopLeft } from "@tabler/icons-react";
+
+import { ArrowUpLeft } from "lucide-react"
+
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const role = useAuthStore((s) => s.user?.role ?? "EMPLOYEE")
@@ -34,7 +39,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className="data-[slot=sidebar-menu-button]:p-1.5!"
             >
               <a href="/dashboard">
-                <IconInnerShadowTop className="size-5!" />
+                {/* <IconInnerShadowTopLeft className="size-5!" /> */}
+                <ArrowUpLeft className="w-5 h-5" />
+                {/* <Shadow size={24} className="size-5!" /> */}
+
                 <span className="text-base font-semibold">DevFlow - HR Management</span>
               </a>
             </SidebarMenuButton>

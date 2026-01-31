@@ -1,3 +1,6 @@
+# Budget Accounting System – Shiv Furniture 
+
+
 npx drizzle-kit generate
 
 
@@ -46,3 +49,102 @@ User → Quotations → Orders → Invoices → Payments
 Vendor → Products → Variants → Attributes
 
 ```
+
+
+
+Goal:
+Create a clean, modern, and user-friendly ERP-style web application that manages purchases, sales, payments, and cost-center–wise budget tracking with real-time budget vs actual insights.
+
+Users & Roles:
+1. Admin (Business Owner)
+   - Full access: create, edit, archive all master data
+   - Record all transactions
+   - Configure auto analytical models
+   - View dashboards, reports, and charts
+
+2. Customer (Portal User)
+   - Login to customer portal
+   - View own Sales Orders, Purchase Orders, Invoices, Bills
+   - Download invoice/bill PDFs
+   - Pay invoices online
+   - Cannot see other customers’ data
+
+Core Features to Implement:
+
+1. Master Data Management (Admin only)
+   - Contacts (customers & vendors)
+   - Products (with categories)
+   - Analytical Accounts (Cost Centers)
+   - Budgets (period-based, revision tracking)
+   - Auto Analytical Models (rule-based cost-center assignment)
+
+2. Transaction Management
+   - Sales Orders (SO)
+   - Purchase Orders (PO)
+   - Customer Invoices
+   - Vendor Bills
+   - Payments
+   - Each transaction and invoice line must be linked to an Analytical Account (manual or automatic)
+
+3. Auto Analytical Models
+   - Rule-based logic such as:
+     - Product category → Cost Center
+     - Vendor/Customer → Cost Center
+   - Automatically assign analytical accounts during invoice creation
+
+4. Budget Accounting Logic
+   - Budgets linked to Analytical Accounts and time periods
+   - Actuals calculated automatically from posted invoices/bills
+   - System must compute:
+     - Budgeted amount
+     - Actual amount
+     - Remaining balance
+     - Achievement percentage
+     - Variance
+   - Support budget revisions with history
+
+5. Payment & Reconciliation Logic
+   - Record payments against invoices
+   - Automatically update payment status:
+     - Not Paid
+     - Partially Paid
+     - Paid
+   - Status based on total invoice amount vs total paid amount
+
+6. Dashboards & Reports (Admin)
+   - Budget vs Actual charts (bar/pie)
+   - Cost-center-wise spending report
+   - Budget achievement line report
+   - Alerts for near or over-budget cost centers
+   - Clear financial summary widgets
+
+7. Customer Portal
+   - Secure authentication
+   - View & download own SO, PO, invoices, bills
+   - Online invoice payment using a payment provider
+   - Simple and clean UI
+
+UI / UX Requirements:
+- Modern, professional ERP-style UI
+- Clean layouts, cards, tables, and charts
+- Responsive design (desktop & tablet friendly)
+- Easy navigation between:
+  - Dashboard
+  - Masters
+  - Transactions
+  - Budgets
+  - Reports
+  - Customer Portal
+- Clear status indicators (Paid / Partial / Unpaid)
+- Visual budget progress bars and charts
+
+Technical Requirements:
+- Next.js App Router
+- Server Actions or API routes
+- PostgreSQL database
+- Drizzle ORM with type-safe schema
+- Role-based access control
+- Secure data isolation for customer portal
+
+Deliverable:
+A production-style, hackathon-ready Budget Accounting web application that demonstrates real-world ERP workflows: Purchases & Sales → Budgeting → Accounting → Payments → Financial Reports.
