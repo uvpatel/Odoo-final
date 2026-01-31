@@ -1,5 +1,7 @@
 declare module ".*css";
 
+import "@clerk/nextjs/server";
+
 export { };
 
 declare global {

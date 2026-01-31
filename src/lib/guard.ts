@@ -9,8 +9,7 @@ export async function requireAdmin() {
   }
 
   // Check if user has admin role in Clerk metadata
-  // We cast to any to avoid "Property 'role' does not exist on type '{}'" if Clerk augmentation is not picked up
-  const role = (sessionClaims?.metadata as any)?.role || (sessionClaims?.publicMetadata as any)?.role;
+  const role = sessionClaims?.metadata?.role || sessionClaims?.publicMetadata?.role;
 
   console.log("User ID:", userId);
   console.log("User role:", role);
