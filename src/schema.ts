@@ -227,6 +227,16 @@ export const payments = pgTable("payments", {
   createdAt: timestamp("created_at", { mode: "date" }).defaultNow(),
 });
 
+
+export const analyticalAccounts = pgTable("analytical_accounts", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  code: varchar("code", { length: 50 }),
+  active: boolean("active").default(true),
+});
+
+
+
 /* ---------------- INFER TYPES ---------------- */
 
 export type InsertUser = typeof users.$inferInsert;
