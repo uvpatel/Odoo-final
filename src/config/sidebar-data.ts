@@ -1,19 +1,17 @@
 import {
-  IconDashboard,
-  IconUsers,
-  IconCalendar,
-  IconFileText,
-  IconWallet,
-  IconChecklist,
-  IconSettings,
-  IconHelp,
-  IconSearch,
-  IconReport,
-  IconFileInvoice,
-  IconUser,
-} from "@tabler/icons-react";
+  LayoutDashboard ,
+  Users,
+  Box,
+  ShoppingCart,
+  FileOutput ,
+  ClipboardList,
+  Settings,
+  HelpCircle,
+  Search,
+  BarChart2,
+} from "lucide-react";
 
-export type UserRole = "ADMIN" | "EMPLOYEE";
+export type UserRole = "ADMIN" | "VENDOR" | "CUSTOMER";
 
 export const getSidebarData = (role: UserRole) => ({
   user: {
@@ -25,97 +23,45 @@ export const getSidebarData = (role: UserRole) => ({
   navMain:
     role === "ADMIN"
       ? [
-          {
-            title: "Dashboard",
-            url: "/dashboard/admin",
-            icon: IconDashboard,
-          },
-          {
-            title: "Employees",
-            url: "/dashboard/employees",
-            icon: IconUsers,
-          },
-          {
-            title: "Attendance",
-            url: "/dashboard/attendance",
-            icon: IconCalendar,
-          },
-          {
-            title: "Leave Approvals",
-            url: "/dashboard/leaves/approvals",
-            icon: IconChecklist,
-          },
-          {
-            title: "Payroll",
-            url: "/dashboard/payroll/manage",
-            icon: IconWallet,
-          },
+          { title: "Dashboard", url: "/dashboard/admin", icon: LayoutDashboard  },
+          { title: "Vendors", url: "/dashboard/vendors", icon: Users },
+          { title: "Products", url: "/dashboard/products", icon: Box },
+          { title: "Orders", url: "/dashboard/orders", icon: ShoppingCart },
+          { title: "Invoices", url: "/dashboard/invoices", icon: FileOutput  },
+          { title: "Reservations", url: "/dashboard/reservations", icon: ClipboardList },
+        ]
+      : role === "VENDOR"
+      ? [
+          { title: "Dashboard", url: "/dashboard/vendor", icon: LayoutDashboard },
+          { title: "My Products", url: "/dashboard/products", icon: Box },
+          { title: "Orders", url: "/dashboard/orders", icon: ShoppingCart },
+          { title: "Invoices", url: "/dashboard/invoices", icon: FileOutput },
+          { title: "Reservations", url: "/dashboard/reservations", icon: ClipboardList },
         ]
       : [
-          {
-            title: "Dashboard",
-            url: "/dashboard",
-            icon: IconDashboard,
-          },
-          {
-            title: "My Profile",
-            url: "/dashboard/profile",
-            icon: IconUser,
-          },
-          {
-            title: "Attendance",
-            url: "/dashboard/attendance",
-            icon: IconCalendar,
-          },
-          {
-            title: "Leaves",
-            url: "/dashboard/leaves",
-            icon: IconFileText,
-          },
-          {
-            title: "Payroll",
-            url: "/dashboard/payroll",
-            icon: IconWallet,
-          },
+          { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
+          { title: "Browse Products", url: "/dashboard/products", icon: Box },
+          { title: "My Orders", url: "/dashboard/orders", icon: ShoppingCart },
+          { title: "My Invoices", url: "/dashboard/invoices", icon: FileOutput  },
+          { title: "My Reservations", url: "/dashboard/reservations", icon: ClipboardList },
         ],
 
   navSecondary: [
-    {
-      title: "Settings",
-      url: "/dashboard/settings",
-      icon: IconSettings,
-    },
-    {
-      title: "Help",
-      url: "/dashboard/help",
-      icon: IconHelp,
-    },
-    {
-      title: "Search",
-      url: "/dashboard/search",
-      icon: IconSearch,
-    },
+    { title: "Settings", url: "/dashboard/settings", icon: Settings },
+    { title: "Help", url: "/dashboard/help", icon: HelpCircle },
+    { title: "Search", url: "/dashboard/search", icon: Search },
   ],
 
   documents:
     role === "ADMIN"
       ? [
-          {
-            name: "Attendance Report",
-            url: "/dashboard/reports/attendance",
-            icon: IconReport,
-          },
-          {
-            name: "Salary Slips",
-            url: "/dashboard/reports/salary",
-            icon: IconFileInvoice,
-          },
+          { name: "Orders Report", url: "/dashboard/reports/orders", icon: BarChart2 },
+          { name: "Revenue Report", url: "/dashboard/reports/revenue", icon: BarChart2 },
         ]
-      : [
-          {
-            name: "My Salary Slips",
-            url: "/dashboard/payroll/slips",
-            icon: IconFileInvoice,
-          },
-        ],
+      : role === "VENDOR"
+      ? [
+          { name: "My Orders Report", url: "/dashboard/reports/orders", icon: BarChart2 },
+          { name: "Earnings Report", url: "/dashboard/reports/revenue", icon: BarChart2 },
+        ]
+      : [{ name: "My Rentals Report", url: "/dashboard/reports/rentals", icon: BarChart2 }],
 });

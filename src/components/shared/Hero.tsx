@@ -11,13 +11,6 @@ export default function Hero() {
             <BackgroundRippleEffect />
             <div className="mt-60 w-full">
                 <h2 className="relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-neutral-800 md:text-4xl lg:text-7xl dark:text-neutral-100">
-                    {/* <TextType
-                        text={[" Every workday, perfectly aligned.", "Welcome Back", "Happy "]}
-                        typingSpeed={75}
-                        pauseDuration={1500}
-                        showCursor={true}
-                        cursorCharacter="|"
-                    /> */}
                     <BlurText
                         text="Shiv Furniture "
                         direction="bottom"

@@ -43,7 +43,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <ArrowUpLeft className="w-5 h-5" />
                 {/* <Shadow size={24} className="size-5!" /> */}
 
-                <span className="text-base font-semibold">DevFlow - HR Management</span>
+                <span className="text-base font-semibold">Shiv Furniture</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>

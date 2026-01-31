@@ -31,7 +31,7 @@ export function NavMain({
               className="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
             >
               <IconCirclePlusFilled />
-              <span>Quick Create</span>
+              <span>Create Invoice</span>
             </SidebarMenuButton>
             <Button
               size="icon"
@@ -39,7 +39,7 @@ export function NavMain({
               variant="outline"
             >
               <IconMail />
-              <span className="sr-only">Inbox</span>
+              <span className="sr-only">Inbox Invoice</span>
             </Button>
           </SidebarMenuItem>
         </SidebarMenu>
