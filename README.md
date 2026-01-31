@@ -31,3 +31,18 @@ npx drizzle-kit migrate
 
 
 npx drizzle-kit push
+
+
+
+
+#### Relations
+```
+User → Quotations → Orders → Invoices → Payments
+        ↓
+     OrderItems → Reservations
+        ↓
+     Pickups → Returns
+
+Vendor → Products → Variants → Attributes
+
+```
