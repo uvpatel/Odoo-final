@@ -106,31 +106,7 @@ export default function NewProductPage() {
         <div className="min-h-screen bg-gray-50 p-4 md:p-8">
             <div className="mx-auto max-w-5xl space-y-6">
                 {/* Header */}
-                <div className="flex items-center gap-4">
-                    <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => window.history.back()}
-                    >
-                        <ArrowLeft className="h-4 w-4" />
-                    </Button>
-                    <div className="flex-1">
-                        <h1 className="text-3xl font-bold tracking-tight">Add New Product</h1>
-                        <p className="text-muted-foreground mt-1">
-                            Create a new product for your catalog
-                        </p>
-                    </div>
-                    <div className="flex gap-2">
-                        <Button variant="outline" onClick={() => window.history.back()}>
-                            Cancel
-                        </Button>
-                        <Button onClick={handleSubmit}>
-                            <Save className="mr-2 h-4 w-4" />
-                            Save Product
-                        </Button>
-                    </div>
-                </div>
-
+                <Header />
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid gap-6 lg:grid-cols-3">
                         {/* Main Content - Left Column */}
@@ -521,23 +497,84 @@ export default function NewProductPage() {
                     </div>
 
                     {/* Bottom Actions */}
-                    <Card>
-                        <CardContent className="flex justify-end gap-2 pt-6">
-                            <Button
-                                type="button"
-                                variant="outline"
-                                onClick={() => window.history.back()}
-                            >
-                                Cancel
-                            </Button>
-                            <Button type="submit">
-                                <Save className="mr-2 h-4 w-4" />
-                                Save Product
-                            </Button>
-                        </CardContent>
-                    </Card>
+                    <BottomAction />
                 </form>
             </div>
         </div>
     );
+}
+
+
+function BottomAction() {
+    return (
+        <Card>
+            <CardContent className="flex justify-end gap-2 pt-6">
+                <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => window.history.back()}
+                >
+                    Cancel
+                </Button>
+                <Button type="submit">
+                    <Save className="mr-2 h-4 w-4" />
+                    Save Product
+                </Button>
+            </CardContent>
+        </Card>
+    )
+
+}
+
+function Header() {
+    const [formData, setFormData] = useState<ProductFormData>({
+        name: '',
+        description: '',
+        category: '',
+        vendor: '',
+        price: '',
+        comparePrice: '',
+        cost: '',
+        sku: '',
+        barcode: '',
+        stock: '',
+        lowStockThreshold: '',
+        status: 'active',
+        trackInventory: true,
+        taxable: true,
+        tags: [],
+    });
+
+    const handleSubmit = (e: React.FormEvent | React.MouseEvent) => {
+        e.preventDefault();
+        console.log('Form submitted:', formData);
+        // Add your form submission logic here
+        alert('Product created successfully!');
+    };
+    return (
+        <div className="flex items-center gap-4">
+            <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => window.history.back()}
+            >
+                <ArrowLeft className="h-4 w-4" />
+            </Button>
+            <div className="flex-1">
+                <h1 className="text-3xl font-bold tracking-tight">Add New Product</h1>
+                <p className="text-muted-foreground mt-1">
+                    Create a new product for your catalog
+                </p>
+            </div>
+            <div className="flex gap-2">
+                <Button variant="outline" onClick={() => window.history.back()}>
+                    Cancel
+                </Button>
+                <Button onClick={handleSubmit}>
+                    <Save className="mr-2 h-4 w-4" />
+                    Save Product
+                </Button>
+            </div>
+        </div>
+    )
 }

@@ -140,6 +140,28 @@ const statusConfig: Record<Order['status'], { label: string; variant: "default" 
 };
 
 export default function OrderPage() {
+
+    return (
+         <SidebarWrapper>
+
+        <div className="min-h-screen bg-gray-50 p-4 md:p-8">
+            <div className="mx-auto max-w-7xl space-y-6">
+                {/* Header */}
+                <Header />
+
+                {/* Statistics Cards */}
+               
+                <StatisticalCard />
+                {/* Filters and Search */}
+               <FiltersSearch />
+            </div>
+        </div>
+</SidebarWrapper>
+    );
+}
+
+
+function FiltersSearch() {
     const [searchQuery, setSearchQuery] = useState('');
     const [statusFilter, setStatusFilter] = useState('all');
     const [sortOrder, setSortOrder] = useState('desc');
@@ -159,19 +181,7 @@ export default function OrderPage() {
             const dateB = new Date(b.createdAt).getTime();
             return sortOrder === 'desc' ? dateB - dateA : dateA - dateB;
         });
-
-    // Calculate statistics
-    const stats = {
-        total: orders.length,
-        pending: orders.filter((o) => o.status === 'pending').length,
-        completed: orders.filter((o) => o.status === 'completed').length,
-        shipped: orders.filter((o) => o.status === 'shipped').length,
-        revenue: orders
-            .filter((o) => o.status === 'completed')
-            .reduce((sum, o) => sum + o.total, 0),
-    };
-
-    const formatDate = (dateString: string) => {
+        const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'short',
@@ -179,87 +189,15 @@ export default function OrderPage() {
         });
     };
 
-    const formatCurrency = (amount: number) => {
+      const formatCurrency = (amount: number) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
         }).format(amount);
     };
 
-    return (
-         <SidebarWrapper>
-
-        <div className="min-h-screen bg-gray-50 p-4 md:p-8">
-            <div className="mx-auto max-w-7xl space-y-6">
-                {/* Header */}
-                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                    <div>
-                        <h1 className="text-3xl font-bold tracking-tight">Orders</h1>
-                        <p className="text-muted-foreground mt-1">
-                            Manage and track all your orders
-                        </p>
-                    </div>
-                    <div className="flex gap-2">
-                        <Button variant="outline" size="sm">
-                            <Download className="mr-2 h-4 w-4" />
-                            Export
-                        </Button>
-                        <Button size="sm">
-                            <RefreshCw className="mr-2 h-4 w-4" />
-                            Refresh
-                        </Button>
-                    </div>
-                </div>
-
-                {/* Statistics Cards */}
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                    <Card>
-                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
-                            <Package className="h-4 w-4 text-muted-foreground" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold">{stats.total}</div>
-                            <p className="text-xs text-muted-foreground">All time orders</p>
-                        </CardContent>
-                    </Card>
-
-                    <Card>
-                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">Pending</CardTitle>
-                            <Clock className="h-4 w-4 text-yellow-600" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold">{stats.pending}</div>
-                            <p className="text-xs text-muted-foreground">Awaiting processing</p>
-                        </CardContent>
-                    </Card>
-
-                    <Card>
-                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">Completed</CardTitle>
-                            <CheckCircle2 className="h-4 w-4 text-green-600" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold">{stats.completed}</div>
-                            <p className="text-xs text-muted-foreground">Successfully delivered</p>
-                        </CardContent>
-                    </Card>
-
-                    <Card>
-                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">Revenue</CardTitle>
-                            <CheckCircle2 className="h-4 w-4 text-muted-foreground" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold">{formatCurrency(stats.revenue)}</div>
-                            <p className="text-xs text-muted-foreground">From completed orders</p>
-                        </CardContent>
-                    </Card>
-                </div>
-
-                {/* Filters and Search */}
-                <Card>
+    return(
+         <Card>
                     <CardHeader>
                         <CardTitle>Order List</CardTitle>
                         <CardDescription>
@@ -388,8 +326,95 @@ export default function OrderPage() {
                         </div>
                     </CardContent>
                 </Card>
-            </div>
-        </div>
-</SidebarWrapper>
-    );
+    )
+    
+}
+function StatisticalCard() {
+    const stats = {
+        total: orders.length,
+        pending: orders.filter((o) => o.status === 'pending').length,
+        completed: orders.filter((o) => o.status === 'completed').length,
+        shipped: orders.filter((o) => o.status === 'shipped').length,
+        revenue: orders
+            .filter((o) => o.status === 'completed')
+            .reduce((sum, o) => sum + o.total, 0),
+    };
+    const formatCurrency = (amount: number) => {
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+        }).format(amount);
+    };
+    return(
+         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                    <Card>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
+                            <Package className="h-4 w-4 text-muted-foreground" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{stats.total}</div>
+                            <p className="text-xs text-muted-foreground">All time orders</p>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium">Pending</CardTitle>
+                            <Clock className="h-4 w-4 text-yellow-600" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{stats.pending}</div>
+                            <p className="text-xs text-muted-foreground">Awaiting processing</p>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium">Completed</CardTitle>
+                            <CheckCircle2 className="h-4 w-4 text-green-600" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{stats.completed}</div>
+                            <p className="text-xs text-muted-foreground">Successfully delivered</p>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium">Revenue</CardTitle>
+                            <CheckCircle2 className="h-4 w-4 text-muted-foreground" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{formatCurrency(stats.revenue)}</div>
+                            <p className="text-xs text-muted-foreground">From completed orders</p>
+                        </CardContent>
+                    </Card>
+                </div>
+    )
+    
+}
+
+function Header() {
+    return(
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <div>
+                        <h1 className="text-3xl font-bold tracking-tight">Orders</h1>
+                        <p className="text-muted-foreground mt-1">
+                            Manage and track all your orders
+                        </p>
+                    </div>
+                    <div className="flex gap-2">
+                        <Button variant="outline" size="sm">
+                            <Download className="mr-2 h-4 w-4" />
+                            Export
+                        </Button>
+                        <Button size="sm">
+                            <RefreshCw className="mr-2 h-4 w-4" />
+                            Refresh
+                        </Button>
+                    </div>
+                </div>
+    )
+    
 }
