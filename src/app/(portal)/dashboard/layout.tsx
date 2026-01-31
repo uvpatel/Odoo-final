@@ -3,6 +3,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { InvoiceProvider } from "@/context/invoice-context";
 import { cookies } from "next/headers";
+export const dynamic = "force-dynamic";
 
 export default async function DashboardLayout({
   children,
