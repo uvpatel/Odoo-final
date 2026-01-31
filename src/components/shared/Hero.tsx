@@ -18,7 +18,7 @@ export default function Hero() {
                     />
                 </h2 >
                 <p className="relative z-10 mx-auto mt-4 max-w-xl text-center text-neutral-800 dark:text-neutral-500">
-                    The all-in-one HRMS platform designed to streamline attendance, payroll, and team management. Built for modern teams who value clarity and speed.
+                   write dummy content
                 </p>
                 
             <div className="relative flex justify-center items-center">

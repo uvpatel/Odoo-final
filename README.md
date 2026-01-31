@@ -148,3 +148,13 @@ Technical Requirements:
 
 Deliverable:
 A production-style, hackathon-ready Budget Accounting web application that demonstrates real-world ERP workflows: Purchases & Sales → Budgeting → Accounting → Payments → Financial Reports.
+
+
+
+###
+UUIDs (Universally Unique Identifiers) are used to generate globally unique identifiers without requiring a central authority or database coordination. They are critical for distributed systems, database primary keys, and microservices to ensure data integrity, prevent ID collisions during merging, and enhance security by making URLs non-enumerable. 
+
+
+```
+antigravity://Postman.postman-for-vscode?code=f15bc6cd32214f63184924b05bc1bf76ed45fc8289f20819422afddb2a3d46a1
+```

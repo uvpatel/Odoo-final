@@ -1,6 +1,7 @@
 // src/app/(dashboard)/layout.tsx
 import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
+import { InvoiceProvider } from "@/context/invoice-context";
 import { cookies } from "next/headers";
 
 export default async function DashboardLayout({
@@ -12,12 +13,16 @@ export default async function DashboardLayout({
   const defaultOpen = cookieStore.get("sidebar:state")?.value === "true";
 
   return (
+
     <SidebarProvider defaultOpen={defaultOpen}>
       <AppSidebar />
       <SidebarInset>
+        <InvoiceProvider>
+
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
           {children}
         </div>
+        </InvoiceProvider>
       </SidebarInset>
     </SidebarProvider>
   );

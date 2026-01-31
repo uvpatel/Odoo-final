@@ -29,7 +29,6 @@ export default function Page() {
           </div>
         </div>
         </SidebarWrapper>
-    //   </SidebarInset>
-    // </SidebarProvider>
+    
   )
 }

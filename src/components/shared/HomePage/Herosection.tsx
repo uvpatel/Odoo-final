@@ -82,7 +82,7 @@ export default function HeroSection() {
           <div className="text-white space-y-8">
             <div className="space-y-4">
               <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-                HR Control Management
+                Shiv Furniture
                 <span className="block mt-2">Admin UI Kit</span>
               </h1>
             </div>
