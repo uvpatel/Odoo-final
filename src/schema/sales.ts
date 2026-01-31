@@ -8,6 +8,7 @@ import {
 } from "drizzle-orm/pg-core";
 import { users } from "./users";
 import { products, productVariants } from "./products";
+import { analyticalAccounts } from "./accounting";
 
 /* ---------------- ENUM HELPERS ---------------- */
 
@@ -38,6 +39,7 @@ export const quotationItems = pgTable("quotation_items", {
     endDate: timestamp("end_date", { mode: "date" }).notNull(),
     qty: integer("qty").default(1),
     price: numeric("price", { precision: 10, scale: 2 }),
+    analyticalAccountId: uuid("analytical_account_id").references(() => analyticalAccounts.id),
 });
 
 /* ---------------- ORDERS ---------------- */
@@ -70,6 +72,7 @@ export const orderItems = pgTable("order_items", {
     endDate: timestamp("end_date", { mode: "date" }),
     qty: integer("qty"),
     price: numeric("price", { precision: 10, scale: 2 }),
+    analyticalAccountId: uuid("analytical_account_id").references(() => analyticalAccounts.id),
 });
 
 /* ---------------- INFER TYPES ---------------- */

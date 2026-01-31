@@ -7,6 +7,7 @@ import {
     numeric,
 } from "drizzle-orm/pg-core";
 import { orders } from "./sales";
+import { analyticalAccounts } from "./accounting";
 
 /* ---------------- ENUM HELPERS ---------------- */
 
@@ -36,6 +37,7 @@ export const invoiceItems = pgTable("invoice_items", {
         .references(() => invoices.id, { onDelete: "cascade" }),
     description: text("description"),
     amount: numeric("amount", { precision: 10, scale: 2 }),
+    analyticalAccountId: uuid("analytical_account_id").references(() => analyticalAccounts.id),
 });
 
 /* ---------------- PAYMENTS ---------------- */

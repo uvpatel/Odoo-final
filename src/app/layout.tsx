@@ -2,11 +2,16 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ViewTransitions } from "next-view-transitions";
-import { authClient } from "@/lib/auth-client"
-
-import { AuthUIProvider } from "@daveyplate/better-auth-ui"
 import { Providers } from "./AuthProvider";
 import { InvoiceProvider } from "@/context/invoice-context";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,16 +34,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ViewTransitions>
-      <InvoiceProvider>
-        <html lang="en">
-          <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased suppressHydrationWarning`}
-          >
-            <Providers>{children}</Providers>
-          </body>
-        </html>
-    </InvoiceProvider >
-    </ViewTransitions>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased suppressHydrationWarning}`}
+        >
+                   <ViewTransitions>
+            <InvoiceProvider>
+              <Providers>{children}</Providers>
+            </InvoiceProvider>
+          </ViewTransitions>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

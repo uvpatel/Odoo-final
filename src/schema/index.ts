@@ -8,3 +8,5 @@ export * from "./accounting";
 export * from "./Contacts";
 export * from "./budget";
 export * from "./journal";
+export * from "./purchases";
+export * from "./autoAnalytical";

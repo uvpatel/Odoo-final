@@ -19,6 +19,7 @@ export const products = pgTable("products", {
         .references(() => vendors.id, { onDelete: "cascade" }),
     name: varchar("name", { length: 255 }).notNull(),
     description: text("description"),
+    category: varchar("category", { length: 100 }),
     basePrice: numeric("base_price", { precision: 10, scale: 2 }).notNull(),
     totalStock: integer("total_stock").default(1),
     active: boolean("active").default(true),
